@@ -1,0 +1,41 @@
+* {
+    margin:20px;
+    padding:20px;
+}
+
+h1 {
+    display:flex;
+    justify-content: center;
+}
+
+#rps-container {
+    display:flex;
+    justify-content:center;
+   
+}
+
+#rps-container button {
+    margin-top:150px;
+    margin:10px;
+    padding:25px;
+    font-size:30px;
+    background-color: lightskyblue;
+    color: black;
+    border-radius:10%
+}
+
+#score-container {
+    display:flex;
+    justify-content:center;
+}
+
+span.human-score {
+    background-color: rgb(9, 136, 215);
+    border: 2px solid black;
+    
+}
+
+span.computer-score {
+    background-color: rgb(222, 98, 79);
+    border: 2px solid black;
+}
