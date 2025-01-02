@@ -1,3 +1,29 @@
+const buttons = document.querySelectorAll("button")
+const humScore = document.querySelector(".human-score")
+const compScore = document.querySelector(".computer-score")
+
+
+let humanScore = 0;
+let computerScore = 0;
+
+
+// This is to get human choice using Prompt
+function getHumanChoice(){
+    let humanVal = prompt("Type your input here")
+    const UppCaseVal = humanVal.toUpperCase()
+    // Validate the input and ensure it is one of the allowed choices
+    if (UppCaseVal == "ROCK" || UppCaseVal == "PAPER" || UppCaseVal == "SCISSOR" ) {
+        return UppCaseVal
+    }
+    else{
+        alert("Please enter a valid input")
+        return getHumanChoice()
+    }
+}
+
+
+
+
 // Function to get the computer's choice randomly
 function getComputerChoice(){
     let compVal = Math.random()
@@ -15,67 +41,35 @@ function getComputerChoice(){
     return ans
 }
 
-// Function to get the human's choice via prompt
-function getHumanChoice(){
-    let humanVal = prompt("Type your input here")
-    const UppCaseVal = humanVal.toUpperCase()
-    // Validate the input and ensure it is one of the allowed choices
-    if (UppCaseVal == "ROCK" || UppCaseVal == "PAPER" || UppCaseVal == "SCISSOR" ) {
-        return UppCaseVal
-    }
-    else{
-        alert("Please enter a valid input")
-        return getHumanChoice()
-    }
-}
+function playRound(humVal){
 
-// Function to play the game
-function playGame(){
-    let humanScore = 0; 
-    let computerScore = 0;
- 
-    // Function to play a single round
-    function playRound(){
-        const humanVal = getHumanChoice()
-        const computerVal = getComputerChoice()
+        const humanValue = humVal
+        const computerValue = getComputerChoice()
 
         // Determine the winner of the round
-        if (humanVal == computerVal){
-            console.log("Its a DRAW")
-        } else if (humanVal == "ROCK" && computerVal == "PAPER" || 
-            humanVal == "PAPER" && computerVal == "SCISSOR"||
-            humanVal == "SCISSOR" && computerVal == "ROCK")
+        if (humanValue == computerValue){
+            alert("It's a draw")
+        } else if (humanValue == "ROCK" && computerValue == "PAPER" || 
+            humanValue == "PAPER" && computerValue == "SCISSOR"||
+            humanValue == "SCISSOR" && computerValue == "ROCK")
             {
-                computerScore++
-                console.log(`Computer Wins, Computer Score:${computerScore}`) 
+                computerScore++;
+                compScore.textContent = `Computer Score: ${computerScore}`
             } else {
-                humanScore++
-                console.log(`Player Wins, Player Score:${humanScore}`)
-        }
-    }
+                humanScore++;
+                humScore.textContent = `Human Score: ${humanScore}`
+                
 
-    // Play 5 rounds of the game
-    for (let i = 0; i < 5; i++) {
-        playRound()
-    }
+        }
+        
 }
 
-// Start the game
-playGame()
 
+buttons.forEach(function(button) {
+    button.addEventListener('click', function (e) {
+        let humVal = e.target.textContent
+        playRound(humVal)
+    })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})
 
